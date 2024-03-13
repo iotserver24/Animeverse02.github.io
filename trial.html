@@ -53,13 +53,89 @@
 <link rel="apple-touch-icon" type="image/png" sizes="700×700" href="static/Polish_20240310_094541862.png">
 
 
+ <style>
+        /* Basic styling for the sidebar */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Initially hidden */
+            width: 250px;
+            height: 100%;
+            background-color: #333;
+            transition: left 0.3s ease;
+        }
+
+        #menu-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        /* Style the menu button (hamburger icon) */
+        #menu-button span {
+            display: block;
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 6px 0;
+        }
+
+        /* Additional styling for your existing header */
+        #head-div {
+            background-color: #f8f8f8;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #title1 img {
+            width: 150px;
+            height: 40px;
+        }
+
+        #search-div {
+            display: flex;
+            align-items: center;
+        }
+
+        #query {
+            margin-right: 10px;
+        }
+    </style>
+
 </head>
 
-<body>
+
     
 
 
-<header id="head-div">
+
+
+
+
+
+
+
+
+   
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <!-- Menu button -->
     <div id="menu-button" onclick="toggleSidebar()">
         <span></span>
@@ -73,31 +149,23 @@
         <button>Button 2</button>
     </div>
 
-    <!-- Your existing header content -->
-    <div id="title1">
-        <a href="./index.html"><img width="150" height="40" src="./static/header.png" alt="AnimeVerse"></a>
-    </div>
-    <div id="search-div">
-        <form action="./search.html" method="GET">
-            <input type="text" name="query" id="query" placeholder="Search Anime..." required />
-            <button name="search" type="submit"><i class="fa fa-search"></i></button>
-        </form>
-    </div>
+    <!-- Header -->
+    <header id="head-div">
+        <div id="title1">
+            <a href="./index.html"><img src="./static/header.png" alt="AnimeVerse"></a>
+        </div>
+        <div id="search-div">
+            <form action="./search.html" method="GET">
+                <input type="text" name="query" id="query" placeholder="Search Anime..." required />
+                <button name="search" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </header>
 
-    <!-- Script for toggling the sidebar -->
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
-        }
-    </script>
-</header>
+    <!-- Rest of your website content -->
+    <!-- ... -->
 
-
-
-
-
-
+    
 
 
 
@@ -150,6 +218,15 @@
         gtag("js", new Date());
         gtag("config", "G-BHQX4066ZV");
     </script>
+
+
+<script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
+        }
+    </script>
+
 </body>
 
 </html>
