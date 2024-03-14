@@ -60,9 +60,7 @@
 
 
 
-
-
-<  <style>
+    <style>
         /* Styles for the menu button */
         #menu-button {
             position: fixed;
@@ -99,7 +97,25 @@
         <!-- Add other sidebar content here if needed -->
     </div>
 
-    <!-- Your other HTML content goes here -->
+    <!-- Your existing header content -->
+    <header id="head-div">
+        <div id="title1">
+            <a href="./index.html"><img width="150" height="40" src="./static/header.png" alt="AnimeVerse"></a>
+        </div>
+        <div id="search-div">
+            <form action="./search.html" method="GET">
+                <input type="text" name="query" id="query" placeholder="Search Anime..." required />
+                <button name="search" type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </header>
+
+ 
+
+
+
+
+
 
    
 
@@ -163,8 +179,7 @@
 
 
 
-
-<!-- JavaScript function to toggle the sidebar -->
+   <!-- JavaScript function to toggle the sidebar -->
     <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
@@ -175,16 +190,6 @@
             }
         }
     </script>
-
-
-
-
-
-
-
-
-
-
 </body>
-
 </html>
+
