@@ -62,94 +62,51 @@
 
 
 
-    <style>
-        /* Basic styling for the sidebar */
-        #sidebar {
-            position: fixed;
-            top: 0;
-            left: -250px; /* Initially hidden */
-            width: 250px;
-            height: 100%;
-            background-color: #333;
-            transition: left 0.3s ease;
-        }
-
+<  <style>
+        /* Styles for the menu button */
         #menu-button {
             position: fixed;
             top: 20px;
             left: 20px;
+            z-index: 1000;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
             cursor: pointer;
-            z-index: 1;
         }
 
-        /* Style the menu button */
-        #menu-button span {
-            display: block;
-            width: 30px;
-            height: 3px;
-            background-color: #fff;
-            margin: 6px 0;
-        }
-
-        /* Additional styling for your existing header */
-        #head-div {
-            background-color: #f8f8f8;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        #title1 img {
-            width: 150px;
-            height: 40px;
-        }
-
-        #search-div {
-            display: flex;
-            align-items: center;
-        }
-
-        #query {
-            margin-right: 10px;
+        /* Styles for the sidebar */
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: -250px; /* Start offscreen */
+            width: 250px;
+            height: 100%;
+            background-color: #222;
+            color: #fff;
+            transition: left 0.3s ease;
         }
     </style>
 </head>
 <body>
-    <!-- Menu button -->
-    <div id="menu-button" onclick="toggleSidebar()">
-        <span></span>
-        <span></span>
-        <span></span>
-        Menu <!-- Display the word "Menu" -->
-    </div>
+    <!-- Menu Button -->
+    <button id="menu-button" onclick="toggleSidebar()">Menu</button>
 
     <!-- Sidebar -->
     <div id="sidebar">
-        <button>Button 1</button>
-        <button>Button 2</button>
+        <p>AnimeVerse: Watch Anime for Free</p>
+        <!-- Add other sidebar content here if needed -->
     </div>
 
-    <!-- Header -->
-    <header id="head-div">
-        <div id="title1">
-            <a href="./index.html"><img src="./static/header.png" alt="AnimeVerse"></a>
-        </div>
-        <div id="search-div">
-            <form action="./search.html" method="GET">
-                <input type="text" name="query" id="query" placeholder="Search Anime..." required />
-                <button name="search" type="submit"><i class="fa fa-search"></i></button>
-            </form>
-        </div>
-    </header>
+    <!-- Your other HTML content goes here -->
 
-    <!-- Rest of your website content -->
-    <!-- ... -->
-
-    
+   
 
 
-    
+ 
+
+        
 
 
 
@@ -207,15 +164,26 @@
 
 
 
-
-
-
- <script>
+<!-- JavaScript function to toggle the sidebar -->
+    <script>
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
-            sidebar.style.left = sidebar.style.left === '0px' ? '-250px' : '0px';
+            if (sidebar.style.left === '-250px') {
+                sidebar.style.left = '0';
+            } else {
+                sidebar.style.left = '-250px';
+            }
         }
     </script>
+
+
+
+
+
+
+
+
+
 
 </body>
 
