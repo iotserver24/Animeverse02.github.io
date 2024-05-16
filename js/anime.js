@@ -5,11 +5,12 @@ const animeapi = "/anime/";
 const recommendationsapi = "/recommendations/";
 
 // Api Server Manager
+const AvailableServers = ['https://api3.iotserver24.workers.dev/'];
 
-const AvailableServers = [
-    "https://api1.anime-dex.workers.dev",
-    "https://api2.anime-dex.workers.dev",
-    "https://api3.anime-dex.workers.dev",
+//  const AvailableServers = [
+ //   "https://api1.anime-dex.workers.dev",
+//    "https://api2.anime-dex.workers.dev",
+//    "https://api3.anime-dex.workers.dev",
 ];
 
 function getApiServer() {
