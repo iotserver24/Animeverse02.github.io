@@ -6,7 +6,7 @@ const episodeapi = "/episode/";
 const dlapi = "/download/";
 
 // Api Server Manager
-const AvailableServers = ['https://api3.iotserver24.workers.dev/'];
+const AvailableServers = ["https://api3.iotserver24.workers.dev"];
 
 // const AvailableServers = [
 //   "https://api1.anime-dex.workers.dev",
