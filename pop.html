@@ -3,7 +3,7 @@
 
 <head>
     <link rel="icon" type="image/x-icon" href="./favicon.ico" />
-    <title>Watch {{ title }} - AnimeDex</title>
+    <title>Watch {{ title }} - AnimeVerse</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="title" content="Watch {{ title }} - AnimeVerse" />
     <meta name="description"
@@ -39,39 +39,53 @@
     <meta name="theme-color" content="#202125" />
     <link href="./css/episode.css" rel="stylesheet" />
 
-    <!-- Popup CSS -->
+    <!-- Stylish Popup Message Styles -->
     <style>
         .popup {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-            background: #ffffff;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
-            display: none;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            z-index: 1000;
+            max-width: 90%;
+            text-align: center;
+            display: none; /* Initially hidden */
         }
 
-        .close-btn {
+        .popup img {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .popup p {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .popup button {
+            padding: 10px 20px;
+            background-color: #FF5733;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            float: right;
-            margin-top: -10px;
-            margin-right: -10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup button:hover {
+            background-color: #FF774D;
         }
     </style>
 </head>
 
 <body>
-    <!-- Popup Message -->
-    <div id="popup" class="popup">
-        <span class="close-btn" onclick="closePopup()">x</span>
-        <p>If you like this website, consider joining our Telegram channel for more updates!</p>
-        <a href="https://t.me/animeversemain" target="_blank"><button>Join Now</button></a>
-    </div>
-    <!-- End Popup Message -->
-
     <header id="head-div">
         <div id="title1">
             <a href="./index.html"><img width="150" height="40" src="./static/header.png" alt="AnimeVerse"></a>
@@ -88,6 +102,14 @@
         <img src="./static/loading2.gif" alt="Loading..." />
     </div>
 
+    <!-- Stylish Popup Message -->
+    <div id="popup" class="popup">
+        <img src="pop.jpg" alt="Image" />
+        <p>If you like this website, consider joining our Telegram channel for more updates!</p>
+        <a href="https://t.me/animeversemain" target="_blank"><button>Join Now</button></a>
+    </div>
+    <!-- End Stylish Popup Message -->
+
     <!-- Error Page -->
     <div class=container id=error-page style="display: none;">
         <h6>Oops! Something Went Wrong</h6>
@@ -99,82 +121,13 @@
     <!-- Error Page -->
 
     <div id="main-section" style="opacity: 0;display: none;">
-        <section id="vid-sec">
-            <div id="vid-div">
-                <div id="video">
-                    <iframe id="AnimeDexFrame" src="" style="border: 0px #ffffff none" scrolling="no" frameborder="0"
-                        marginheight="0px" marginwidth="0px" allowfullscreen></iframe>
-                </div>
-            </div>
-
-            <div id="server_main">
-                <div class="status">
-                    <div class="scontent">
-                        You are watching <b id="ep-name">
-                            <h1>{{ title }}</h1>
-                        </b>If
-                        current server doesn't work please try other servers
-                        beside.
-                    </div>
-                </div>
-
-                <div class="server">
-                    <div class="stitle">
-                        <i class="fa fa-microphone"></i>
-
-                        Servers:
-                    </div>
-                    <div id="serversbtn" class="slist"></div>
-                </div>
-
-                <a id="showdl" onclick="showDownload()"><i class="fa fa-download"></i>Download</a>
-                <div id="dldiv" class="dldiv">
-                    <h4 id="download">Download Links:</h4>
-
-                    <div class="server">
-                        <div class="stitle">
-                            <i class="fa fa-closed-captioning"></i>Quality:
-                        </div>
-                        <div id="dllinks" class="slist">
-                            <div id="load">
-                                <img src="./static/loading2.gif" alt="Loading..." />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="watch">
-            <div class="divo">
-                <!-- Episode Slider Start -->
-                <div id="slider-main" class="slider-main" style="display: none;">
-                    <div id="slider-carousel" class="slider-carousel">
-                        <div id="ep-slider" class="ep-slider"></div>
-                    </div>
-                    <a class="prev" onclick="plusSlides(-1)">❮</a>
-                    <a class="next" onclick="plusSlides(+1)">❯</a>
-                </div>
-                <!-- Episode Slider End -->
-
-                <!-- Episode List Start -->
-                <div class="ep-divo-outer">
-                    <section>
-                        <h2>List Of Episodes:</h2>
-                        <select id="ep-upper-div" class="ep-divo-upper divo2" onchange="episodeSelectChange(this)"></select>
-                    </section>
-                    <hr>
-                    <div id="ep-lower-div" class="ep-divo-lower divo2"></div>
-                </div>
-                <!-- Episode List End -->
-            </div>
-        </section>
-
+        <!-- Your Main Content Here -->
     </div>
     <hr />
     <footer>
         <div>
-            <a href=" https://youtube.com/@R3AP3Redit?si=6dwnZlRWSWm-w0du  " target="_blank">MADE WITH <i class="fa fa-heart pulse"></i>BY R3AP3R
+            <a href=" https://youtube.com/@R3AP3Redit?si=6dwnZlRWSWm-w0du  " target="_blank">MADE WITH <i
+                    class="fa fa-heart pulse"></i>BY R3AP3R
                 editz</a>
             <a href=" https://youtube.com/@R3AP3Redit?si=6dwnZlRWSWm-w0du" target="_blank">(@R3AP3Redit)</a>
         </div>
@@ -195,22 +148,21 @@
 
     <!-- Popup Script -->
     <script>
-        // Function to show the popup
-        function showPopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "block";
+        // Function to open the popup
+        function openPopup() {
+            document.getElementById("popup").style.display = "block";
         }
 
         // Function to close the popup
         function closePopup() {
-            var popup = document.getElementById("popup");
-            popup.style.display = "none";
+            document.getElementById("popup").style.display = "none";
         }
 
-        // Show the popup after 5 seconds (adjust as needed)
-        setTimeout(showPopup, 5000);
+        // Open the popup automatically when the page loads
+        window.onload = function () {
+            openPopup();
+        };
     </script>
-    <!-- End Popup Script -->
 </body>
 
 </html>
