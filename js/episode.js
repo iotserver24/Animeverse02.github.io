@@ -359,6 +359,43 @@ async function loadData() {
         getEpUpperList(eplist);
         console.log("Episode list loaded");
 
+        for (let i = 0; i < eplist.length; i++) {
+            const episode_id = eplist[i][1];
+            try {
+                let data = await getJson(episodeapi + episode_id); // Assuming episode_id is correct for fetching data
+
+                await loadEpisodeData(data);
+
+                const anime_id = data["anime_id"]; // Assuming you can get anime_id from the data response
+                const episodes = (await getJson(animeapi + anime_id))["results"]["episodes"];
+                getEpUpperList(episodes);
+                console.log("Episode list loaded");
+
+                try {
+                    await getEpSlider(episodes, episode_id);
+                } catch {
+                    document.getElementById("main-section").style.display = "block";
+                    window.scrollTo({
+                        top: 0,
+                        left: 0,
+                        behavior: "instant",
+                    });
+
+                    setTimeout(() => {
+                        document.getElementById("main-section").style.opacity = 1;
+                        document.getElementById("load").style.display = "none";
+                    }, 100);
+                }
+                console.log("Episode Slider loaded");
+            } catch (err) {
+                document.getElementById("main-section").style.display = "none";
+                document.getElementById("error-page").style.display = "block";
+                document.getElementById("error-desc").innerHTML = err;
+                console.error(err);
+            }
+            document.getElementById("AnimeDexFrame").focus();
+        }
+
         try {
             await getEpSlider(eplist, urlParams.get("episode"));
         } catch {
@@ -368,11 +405,6 @@ async function loadData() {
                 left: 0,
                 behavior: "instant",
             });
-
-            setTimeout(() => {
-                document.getElementById("main-section").style.opacity = 1;
-                document.getElementById("load").style.display = "none";
-            }, 100);
         }
         console.log("Episode Slider loaded");
     } catch (err) {
@@ -381,7 +413,9 @@ async function loadData() {
         document.getElementById("error-desc").innerHTML = err;
         console.error(err);
     }
-    document.getElementById("AnimeDexFrame").focus();
 }
+
+//    document.getElementById("AnimeDexFrame").focus();
+// }
 
 loadData();
