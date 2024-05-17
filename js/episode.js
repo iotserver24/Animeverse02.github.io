@@ -351,71 +351,40 @@ async function loadEpisodeData(data) {
 
 async function loadData() {
     try {
+        // Fetch data for the current episode
         let data = await getJson(episodeapi + EpisodeID);
-
         await loadEpisodeData(data);
 
-        const eplist = (await getJson(animeapi + AnimeID))["results"]["episodes"];
-        getEpUpperList(eplist);
+        // Get the list of episodes for the anime
+        const animeId = data["anime_id"]; // Assuming you can get anime_id from the data response
+        const episodes = (await getJson(animeapi + animeId))["results"]["episodes"];
+        getEpUpperList(episodes);
         console.log("Episode list loaded");
 
-        for (let i = 0; i < eplist.length; i++) {
-            const episode_id = eplist[i][1];
+        // Process each episode in the list
+        for (let i = 0; i < episodes.length; i++) {
+            const episodeId = episodes[i][1];
             try {
-                let data = await getJson(episodeapi + episode_id); // Assuming episode_id is correct for fetching data
+                let episodeData = await getJson(episodeapi + episodeId);
+                await loadEpisodeData(episodeData);
+                console.log("Episode data loaded for episode ID:", episodeId);
 
-                await loadEpisodeData(data);
-
-                const anime_id = data["anime_id"]; // Assuming you can get anime_id from the data response
-                const episodes = (await getJson(animeapi + anime_id))["results"]["episodes"];
-                getEpUpperList(episodes);
-                console.log("Episode list loaded");
-
-                try {
-                    await getEpSlider(episodes, episode_id);
-                } catch {
-                    document.getElementById("main-section").style.display = "block";
-                    window.scrollTo({
-                        top: 0,
-                        left: 0,
-                        behavior: "instant",
-                    });
-
-                    setTimeout(() => {
-                        document.getElementById("main-section").style.opacity = 1;
-                        document.getElementById("load").style.display = "none";
-                    }, 100);
-                }
-                console.log("Episode Slider loaded");
+                // Assuming you want to load episode sliders for each episode
+                await getEpSlider(episodes, episodeId);
+                console.log("Episode Slider loaded for episode ID:", episodeId);
             } catch (err) {
-                document.getElementById("main-section").style.display = "none";
-                document.getElementById("error-page").style.display = "block";
-                document.getElementById("error-desc").innerHTML = err;
-                console.error(err);
+                console.error("Error loading episode data:", err);
             }
-            document.getElementById("AnimeDexFrame").focus();
         }
 
-        try {
-            await getEpSlider(eplist, urlParams.get("episode"));
-        } catch {
-            document.getElementById("main-section").style.display = "block";
-            window.scrollTo({
-                top: 0,
-                left: 0,
-                behavior: "instant",
-            });
-        }
-        console.log("Episode Slider loaded");
+        // Load episode slider for the current episode
+        await getEpSlider(episodes, EpisodeID);
+        console.log("Episode Slider loaded for current episode");
     } catch (err) {
-        document.getElementById("main-section").style.display = "none";
-        document.getElementById("error-page").style.display = "block";
-        document.getElementById("error-desc").innerHTML = err;
-        console.error(err);
+        console.error("Error loading data:", err);
+        // Handle errors here
     }
 }
 
-//    document.getElementById("AnimeDexFrame").focus();
-// }
 
 loadData();
